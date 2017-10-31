@@ -1,5 +1,10 @@
 # Char-CNN
 
+An implementation of
+
+    Character-level Convolutional Networks for Text Classification
+    Zhang and LeCun, 2015 (See https://arxiv.org/abs/1509.01626)
+
 ## How to run notebooks or train a model
 
 If you wish to learn a new model or to run the notebooks, you can do so by
