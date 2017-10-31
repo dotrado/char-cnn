@@ -1,0 +1,5 @@
+#!/bin/bash
+
+set -o pipefail
+
+2>&1 nosetests | grep -v "Level 1"

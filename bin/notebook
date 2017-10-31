@@ -1,0 +1,21 @@
+#!/bin/bash
+#
+#
+# Start up an ipython notebook in a docker container and open in your browser.
+# Uses the floydhub docker container which you can install with `bin/setup`.
+
+set -e
+set -u
+
+docker run \
+  -v $(pwd):/challenge \
+  -p 8888:8888 \
+  -w /challenge \
+  --name challenge-sap \
+  --rm \
+  -e KERAS_BACKEND=tensorflow \
+  -d \
+  char-cnn bash /root/run_jupyter.sh
+
+# wait for the notebook to start up and the open
+sleep 5 && open http://localhost:8888
