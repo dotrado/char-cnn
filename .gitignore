@@ -1,2 +1,3 @@
-.ipynb_checkpoints
+.cache/
+.ipynb_checkpoints/
 logs/
