@@ -9,13 +9,13 @@ An implementation of
 
 ## Installation
 
-```bash:
+```bash
 pip install char-cnn
 ```
 
 ## Usage
 
-```python:
+```python
 from charcnn import cnn
 
 xtrain, ytrain, xtest, vocab, max_len, n_classes = cnn.preprocess(
