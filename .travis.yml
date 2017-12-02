@@ -1,4 +1,4 @@
-before_install: pip install tensorflow keras
+before_install: pip install tensorflow
 cache: pip
 dist: trusty
 env:
