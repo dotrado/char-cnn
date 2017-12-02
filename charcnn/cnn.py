@@ -151,10 +151,10 @@ def main():
             return f.read().splitlines()
 
     # read and prepare data
-    xtrain, ytrain, xtest, vocab, max_len, n_classes = cnn.preprocess(
-        lines('data/xtrain.txt'),
-        lines('data/ytrain.txt'),
-        lines('data/xtest.txt'))
+    xtrain, ytrain, xtest, vocab, max_len, n_classes = preprocess(
+        lines('data/test/xtrain.txt'),
+        lines('data/test/ytrain.txt'),
+        lines('data/test/xtest.txt'))
 
     # compile model
     model = compiled(char_cnn(len(vocab), max_len, n_classes))

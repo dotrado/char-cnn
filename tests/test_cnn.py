@@ -21,7 +21,7 @@ class TestModel:
             lines('data/test/xtest.txt'))
 
         model = cnn.compiled(cnn.char_cnn(len(vocab), max_len, n_classes))
-        fit(model, xtrain, ytrain, callbacks)
+        history = cnn.fit(model, xtrain, ytrain, callbacks)
 
 
 class TestPipeline:
