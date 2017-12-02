@@ -118,7 +118,6 @@ def preprocess(xtrain, ytrain, xtest, max_len = None):
     # lookup tables for letters and classes. prepends padding char
     idx_letters = dict(((c, i) for c, i in zip(vocab, range(len(vocab)))))
     idx_classes = dict(((c, i) for c, i in zip(classes, range(len(classes)))))
-    print(idx_classes)
 
     # dense integral indices
     xtrain = [[idx_letters[char] for char in list(line)] for line in xtrain]

@@ -3,7 +3,7 @@ import os
 import numpy as np
 import pandas as pd
 
-import cnn
+from charcnn import cnn
 
 
 class TestModel:
@@ -16,9 +16,9 @@ class TestModel:
 
     def xxx_test_training(self):
         xtrain, ytrain, xtest, vocab, max_len, n_classes = cnn.preprocess(
-            lines('test/xtrain.txt'),
-            lines('test/ytrain.txt'),
-            lines('test/xtest.txt'))
+            lines('data/test/xtrain.txt'),
+            lines('data/test/ytrain.txt'),
+            lines('data/test/xtest.txt'))
 
         model = cnn.compiled(cnn.char_cnn(len(vocab), max_len, n_classes))
         fit(model, xtrain, ytrain, callbacks)
@@ -29,9 +29,9 @@ class TestPipeline:
 
     def test_preprocesses_data(self):
         xtrain, ytrain, xtest, vocab, max_len, n_classes = cnn.preprocess(
-            lines('test/xtrain.txt'),
-            lines('test/ytrain.txt'),
-            lines('test/xtest.txt'))
+            lines('data/test/xtrain.txt'),
+            lines('data/test/ytrain.txt'),
+            lines('data/test/xtest.txt'))
 
         # 'hello', padded to max_len = 10 with n_vocab = 18.
         got = xtrain[4].astype(np.float)

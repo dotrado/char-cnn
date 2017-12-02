@@ -3,3 +3,4 @@
 logs/
 char_cnn.egg-info/
 dist/
+build/

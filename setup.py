@@ -20,7 +20,11 @@ setuptools.setup(
             "data/dbpedia/*.gz",
         ]
     },
-    packages=setuptools.find_packages(),
+    packages=setuptools.find_packages(
+        exclude=[
+            "tests"
+        ]
+    ),
     url="https://github.com/purzelrakete/char-cnn",
     version="0.0.1"
 )
