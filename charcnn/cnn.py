@@ -19,28 +19,28 @@ from keras.models import Sequential
 from keras.preprocessing.sequence import pad_sequences
 
 
-def char_cnn(n_vocab, max_len, n_classes, weights_path = None):
+def char_cnn(n_vocab, max_len, n_classes, weights_path=None):
     "See Zhang and LeCun, 2015"
 
     model = Sequential()
-    model.add(Convolution1D(256, 7, activation = 'relu', input_shape = (max_len, n_vocab)))
+    model.add(Convolution1D(256, 7, activation='relu', input_shape=(max_len, n_vocab)))
     model.add(MaxPooling1D(3))
 
-    model.add(Convolution1D(256, 7, activation = 'relu'))
+    model.add(Convolution1D(256, 7, activation='relu'))
     model.add(MaxPooling1D(3))
 
-    model.add(Convolution1D(256, 3, activation = 'relu'))
-    model.add(Convolution1D(256, 3, activation = 'relu'))
-    model.add(Convolution1D(256, 3, activation = 'relu'))
-    model.add(Convolution1D(256, 3, activation = 'relu'))
+    model.add(Convolution1D(256, 3, activation='relu'))
+    model.add(Convolution1D(256, 3, activation='relu'))
+    model.add(Convolution1D(256, 3, activation='relu'))
+    model.add(Convolution1D(256, 3, activation='relu'))
     model.add(MaxPooling1D(3))
 
     model.add(Flatten())
-    model.add(Dense(1024, activation = 'relu'))
+    model.add(Dense(1024, activation='relu'))
     model.add(Dropout(0.5))
-    model.add(Dense(1024, activation = 'relu'))
+    model.add(Dense(1024, activation='relu'))
     model.add(Dropout(0.5))
-    model.add(Dense(n_classes, activation = 'softmax'))
+    model.add(Dense(n_classes, activation='softmax'))
 
     if weights_path:
         model.load_weights(weights_path)
@@ -51,22 +51,23 @@ def char_cnn(n_vocab, max_len, n_classes, weights_path = None):
 def compiled(model):
     "compile with chosen config"
 
-    model.compile(optimizer = 'adam',
-                  loss = 'categorical_crossentropy',
-                  metrics = ['accuracy'])
+    model.compile(optimizer='adam',
+                  loss='categorical_crossentropy',
+                  metrics=['accuracy'])
 
     return model
 
 
-def fit(model, xtrain, ytrain, callbacks, batch = 128, epochs = 5, split = 0.1):
+def fit(model, xtrain, ytrain, callbacks, batch=128, epochs=5, split=0.1):
     "fit the model"
 
-    return model.fit(xtrain, ytrain,
-        batch_size = batch,
-        epochs = epochs,
-        verbose = 3,
-        validation_split = split,
-        callbacks = callbacks)
+    return model.fit(xtrain,
+                     ytrain,
+                     batch_size=batch,
+                     epochs=epochs,
+                     verbose=3,
+                     validation_split=split,
+                     callbacks=callbacks)
 
 
 def predict(model, X):
@@ -76,7 +77,7 @@ def predict(model, X):
     all_preds = model.predict(X)
 
     # for each instance get the index of the class with max probability
-    idxs = np.argmax(all_preds, axis = 1)
+    idxs = np.argmax(all_preds, axis=1)
 
     # get the values of the highest probability for each instance
     preds = [all_preds[i, idxs[i]] for i in range(len(idxs))]
@@ -84,17 +85,17 @@ def predict(model, X):
     return np.array(preds), idxs
 
 
-def preprocess(xtrain, ytrain, xtest, max_len = None):
+def preprocess(xtrain, ytrain, xtest, max_len=None):
     "preprocess and featurize the data"
 
     xtrain = [line.lower() for line in xtrain]
-    xtest =  [line.lower() for line in xtest]
+    xtest = [line.lower() for line in xtest]
     ytrain = [long(line) for line in ytrain]
 
-    def chars(dataset): return reduce(
-        lambda x, y: x.union(y),
-        (set(line) for line in dataset)
-    )
+    def chars(dataset):
+        return reduce(
+            lambda x, y: x.union(y),
+            (set(line) for line in dataset))
 
     def onehot(chars_list, vocab_size):
         hot = np.zeros((len(chars_list), vocab_size))
@@ -121,17 +122,17 @@ def preprocess(xtrain, ytrain, xtest, max_len = None):
 
     # dense integral indices
     xtrain = [[idx_letters[char] for char in list(line)] for line in xtrain]
-    xtest =  [[idx_letters[char] for char in list(line)] for line in xtest]
+    xtest = [[idx_letters[char] for char in list(line)] for line in xtest]
     ytrain = [idx_classes[line] for line in ytrain]
 
     # pad to fixed lengths
     xtrain = pad_sequences(xtrain, max_len)
-    xtest  = pad_sequences(xtest, max_len)
+    xtest = pad_sequences(xtest, max_len)
 
     # onehot
     xtrain = np.array([onehot(line, len(idx_letters)) for line in xtrain])
     ytrain = onehot(ytrain, len(idx_classes))
-    xtest =  np.array([onehot(line, len(idx_letters)) for line in xtest])
+    xtest = np.array([onehot(line, len(idx_letters)) for line in xtest])
 
     return (
         xtrain,
@@ -146,8 +147,8 @@ def main():
     "learn and predict"
 
     def lines(filename):
-       with open(filename) as f:
-           return f.read().splitlines()
+        with open(filename) as f:
+            return f.read().splitlines()
 
     # read and prepare data
     xtrain, ytrain, xtest, vocab, max_len, n_classes = cnn.preprocess(
@@ -161,7 +162,7 @@ def main():
     # tensorflow specific, off
     callbacks = []
     if False:
-        callbacks.append(TensorBoard(write_images = True))
+        callbacks.append(TensorBoard(write_images=True))
 
     # fit model and log out to tensorboard
     history = fit(model, xtrain, ytrain, callbacks)
@@ -170,7 +171,7 @@ def main():
     # evaluation
     print(history.history)
     with open('metrics.txt', 'w') as f:
-        f.write(json.dumps(history.history, indent = 1))
+        f.write(json.dumps(history.history, indent=1))
 
     # prediction
     _, ytest = predict(model, xtest)
