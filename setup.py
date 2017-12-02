@@ -9,7 +9,9 @@ setuptools.setup(
         ]
     },
     install_requires=[
-        "keras"
+        "keras",
+        "pandas",
+        "numpy"
     ],
     license="MIT",
     name="char-cnn",

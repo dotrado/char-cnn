@@ -1,6 +1,5 @@
 import os
 
-import nose
 import numpy as np
 import pandas as pd
 
