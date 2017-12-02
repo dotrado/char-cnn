@@ -6,6 +6,7 @@ An implementation of
 
     Character-level Convolutional Networks for Text Classification
     Zhang and LeCun, 2015 (See https://arxiv.org/abs/1509.01626)
+
 """
 
 import numpy as np
@@ -88,6 +89,7 @@ def preprocess(xtrain, ytrain, xtest, max_len = None):
 
     xtrain = [line.lower() for line in xtrain]
     xtest =  [line.lower() for line in xtest]
+    ytrain = [long(line) for line in ytrain]
 
     def chars(dataset): return reduce(
         lambda x, y: x.union(y),
@@ -116,11 +118,12 @@ def preprocess(xtrain, ytrain, xtest, max_len = None):
     # lookup tables for letters and classes. prepends padding char
     idx_letters = dict(((c, i) for c, i in zip(vocab, range(len(vocab)))))
     idx_classes = dict(((c, i) for c, i in zip(classes, range(len(classes)))))
+    print(idx_classes)
 
     # dense integral indices
     xtrain = [[idx_letters[char] for char in list(line)] for line in xtrain]
     xtest =  [[idx_letters[char] for char in list(line)] for line in xtest]
-    ytrain = [idx_classes[long(line)] for line in ytrain]
+    ytrain = [idx_classes[line] for line in ytrain]
 
     # pad to fixed lengths
     xtrain = pad_sequences(xtrain, max_len)
@@ -143,11 +146,15 @@ def preprocess(xtrain, ytrain, xtest, max_len = None):
 def main():
     "learn and predict"
 
+    def lines(filename):
+       with open(filename) as f:
+           return f.read().splitlines()
+
     # read and prepare data
-    xtrain, ytrain, xtest, vocab, max_len, n_classes = preprocess(
-        'data/xtrain.txt',
-        'data/ytrain.txt',
-        'data/xtest.txt')
+    xtrain, ytrain, xtest, vocab, max_len, n_classes = cnn.preprocess(
+        lines('data/xtrain.txt'),
+        lines('data/ytrain.txt'),
+        lines('data/xtest.txt'))
 
     # compile model
     model = compiled(char_cnn(len(vocab), max_len, n_classes))

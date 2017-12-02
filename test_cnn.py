@@ -15,6 +15,15 @@ class TestModel:
         model = cnn.compiled(cnn.char_cnn(n_vocab, max_len, n_classes))
         assert model.built, "model not built"
 
+    def xxx_test_training(self):
+        xtrain, ytrain, xtest, vocab, max_len, n_classes = cnn.preprocess(
+            lines('test/xtrain.txt'),
+            lines('test/ytrain.txt'),
+            lines('test/xtest.txt'))
+
+        model = cnn.compiled(cnn.char_cnn(len(vocab), max_len, n_classes))
+        fit(model, xtrain, ytrain, callbacks)
+
 
 class TestPipeline:
     "Data and feaures"
@@ -22,7 +31,7 @@ class TestPipeline:
     def test_preprocesses_data(self):
         xtrain, ytrain, xtest, vocab, max_len, n_classes = cnn.preprocess(
             lines('test/xtrain.txt'),
-            map(long, lines('test/ytrain.txt')),
+            lines('test/ytrain.txt'),
             lines('test/xtest.txt'))
 
         # 'hello', padded to max_len = 10 with n_vocab = 18.

@@ -1,5 +1,7 @@
 # Char-CNN
 
+[![Build Status](https://travis-ci.org/purzelrakete/char-cnn.png?branch=master)](https://travis-ci.org/purzelrakete/char-cnn)
+
 An implementation of
 
     Character-level Convolutional Networks for Text Classification
