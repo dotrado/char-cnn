@@ -6,3 +6,10 @@ env:
 install: pip install --editable .
 language: python
 script: pytest
+deploy:
+  provider: pypi
+  user: purzelrakete
+  password:
+    secure: SXb6qgOr27mEt4VYJiNDICyIP4/QOKKiedg71t43jXJJeFZxIp21afFovkRvkxj/Vx105HelI6z4MqyOqsgWXomH5LHCg/bodY4WJlY2o27pJ5a84g8SsYclyIvQt7T8dWHBbZCRUhUTXfaiFOraTwFm57qt86CsMxdv53vtFyv65T8UkfQ/tI6dpwNTj3dvRFTPUtjiXZCYIENQVAsk8+AlkWQhiNZn9fHOkjjKYoyJnKjs0ueJ2iQPGjCIISip1YmM7DNzPGkT7pi6843yuCfu8+ER26kLnzdPUBNjYdhGb4kTlL5ozhpEXbyQLRXyz5j98peTDP2M66v+vNei2IotD4iLkdgDCwMIuzkaltA7rEVsDbf7U+bAops7ZoNhtbMVtV2lgujQqi9W9FZN5FgGvM7EjWLLabTHjhTPvXWP/pGW+a/iY2RdVrADJfDOvf9FzrlTxtlDlMK/WBSRvejj8nOdlBOxw1jHYpKkpnNTPDjAOerMLlacQe3xnoCu+gyp8bKkcf+D0Hxmu3MdJnYYTxMrbkZ6fkh60DAFW6DwLWP0wJg+0c4fLUakSPWto5j6VU0WG/Uaezno8D2+XAznz3wCUYZklLLO4ESfdUvODEFFce8OsKGSkDxAYk+Hd6sEcDC9kDe/nlaeAPMXB5XlVXxGAIeFhKuuKVknpOA=
+  on:
+    tags: true
