@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
-## 0.0.2 - 2017-12-04
+## [0.0.2] - 2017-12-04
 ### Added
 - Datasets loading is now in data
 
@@ -13,7 +13,7 @@ All notable changes to this project will be documented in this file.
 - Preprocessing moved to data module
 - Switched to keras 2.0 API
 
-## 0.0.1 - 2017-12-02
+## [0.0.1] - 2017-12-02
 ### Added
 - Initial version to test travis pypi deployment
 
