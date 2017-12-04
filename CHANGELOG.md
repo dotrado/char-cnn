@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.0.4] - 2017-12-04
+### Changed
+- Remote Datasets hostling location changed
+
 ## [0.0.3] - 2017-12-04
 ### Added
 - Remote Datasets
@@ -22,6 +26,7 @@ All notable changes to this project will be documented in this file.
 - Initial version to test travis pypi deployment
 
 [Unreleased]: https://github.com/purzelrakete/char-cnn/compare/v0.0.2...HEAD
+[0.0.4]: https://github.com/purzelrakete/char-cnn/compare/v0.0.3...v0.0.4
 [0.0.3]: https://github.com/purzelrakete/char-cnn/compare/v0.0.2...v0.0.3
 [0.0.2]: https://github.com/purzelrakete/char-cnn/compare/v0.0.1...v0.0.2
 [0.0.1]: https://github.com/purzelrakete/char-cnn/compare/37c72676c94f7b9354da6bdcf857e9e00c572e3f...v0.0.1
