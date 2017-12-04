@@ -31,7 +31,7 @@ def preprocess(xtrain, ytrain, xtest, max_len=None):
             (set(line) for line in dataset))
 
     def onehot(dataset, max_len, vocab_size):
-        hot = np.zeros((len(dataset), max_len, vocab_size), dtype = np.bool)
+        hot = np.zeros((len(dataset), max_len, vocab_size), dtype=np.bool)
         i = 0
         for line in dataset:
             j = 0
@@ -69,7 +69,7 @@ def preprocess(xtrain, ytrain, xtest, max_len=None):
     xtest = pad_sequences(xtest, max_len)
 
     xtrain = onehot(xtrain, max_len, len(idx_letters))
-    ytrain = to_categorical(ytrain, num_classes = len(classes))
+    ytrain = to_categorical(ytrain, num_classes=len(classes))
     xtest = onehot(xtest, max_len, len(idx_letters))
 
     return (
