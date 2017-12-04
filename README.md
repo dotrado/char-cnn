@@ -30,7 +30,7 @@ history = cnn.fit(model, xtrain, ytrain, callbacks)
 print(history.history)
 ```
 
-# Citation
+## Citation
 
 ```citation
 @article{DBLP:journals/corr/ZhangZL15,
