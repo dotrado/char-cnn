@@ -16,7 +16,7 @@ pip install char-cnn
 ```python
 from charcnn import cnn, data
 
-xtrain, ytrain, xtest = data.dbpedia(sample=0.05, dataset_source=data.DATA_GITHUB_URL)
+xtrain, ytrain, xtest = data.dbpedia(sample=0.05, dataset_source=data.DATA_CLOUD_URL)
 xtrain, ytrain, xtest, vocab, max_len, n_classes = data.preprocess(
     xtrain,
     ytrain,

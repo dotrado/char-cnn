@@ -1,3 +1,0 @@
-data filter=lfs diff=lfs merge=lfs -text
-data/dbpedia/test.csv.gz filter=lfs diff=lfs merge=lfs -text
-data/dbpedia/train.csv.gz filter=lfs diff=lfs merge=lfs -text

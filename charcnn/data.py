@@ -19,8 +19,8 @@ import pandas as pd
 # available when the project is checked out, not when pip installed.
 DATA_LOCAL_PATH = 'data'
 
-# remote path from github
-DATA_GITHUB_URL = 'https://github.com/purzelrakete/char-cnn/raw/master/data'
+# remote path from google cloud storage
+DATA_CLOUD_URL = 'https://storage.googleapis.com/char-cnn-datsets'
 
 
 def preprocess(xtrain, ytrain, xtest, max_len=None):
