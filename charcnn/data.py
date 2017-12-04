@@ -16,6 +16,13 @@ import numpy as np
 import pandas as pd
 
 
+# available when the project is checked out, not when pip installed.
+DATA_LOCAL_PATH = 'data'
+
+# remote path from github
+DATA_GITHUB_URL = 'https://github.com/purzelrakete/char-cnn/raw/master/data'
+
+
 def preprocess(xtrain, ytrain, xtest, max_len=None):
     """
     Preprocess and featurize the data
@@ -81,7 +88,7 @@ def preprocess(xtrain, ytrain, xtest, max_len=None):
         len(classes))
 
 
-def dbpedia(sample=None):
+def dbpedia(sample=None, dataset_source=DATA_LOCAL_PATH):
     """
     DBpedia is a crowd-sourced community effort to extract structured
     information from Wikipedia. The DBpedia ontology dataset is constructed by
@@ -92,8 +99,8 @@ def dbpedia(sample=None):
     """
 
     names = ['label', 'title', 'body']
-    df_train = pd.read_csv('data/dbpedia/train.csv.gz', header=None, names=names)
-    df_test = pd.read_csv('data/dbpedia/test.csv.gz', header=None, names=names)
+    df_train = pd.read_csv(dataset_source + '/dbpedia/train.csv.gz', header=None, names=names)
+    df_test = pd.read_csv(dataset_source + '/dbpedia/test.csv.gz', header=None, names=names)
 
     if sample:
         df_train = df_train.sample(frac=sample)
