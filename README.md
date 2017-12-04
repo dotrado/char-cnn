@@ -32,6 +32,7 @@ print(history.history)
 
 # Citation
 
+```citation
 @article{DBLP:journals/corr/ZhangZL15,
   author    = {Xiang Zhang and Junbo Jake Zhao and Yann LeCun},
   title     = {Character-level Convolutional Networks for Text Classification},
@@ -45,3 +46,4 @@ print(history.history)
   biburl    = {http://dblp.org/rec/bib/journals/corr/ZhangZL15},
   bibsource = {dblp computer science bibliography, http://dblp.org}
 }
+```
